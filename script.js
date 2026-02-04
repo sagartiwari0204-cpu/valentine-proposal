@@ -1,39 +1,46 @@
-const noBtn = document.getElementById("no");
 const yesBtn = document.getElementById("yes");
-const hearts = document.getElementById("hearts");
-const delayedText = document.getElementById("delayed-text");
+const noBtn = document.getElementById("no");
+const message = document.getElementById("message");
+const music = document.getElementById("bg-music");
 
-// No button runaway
-function moveNo() {
+// Exactly 5 different NO messages
+const noTexts = [
+  "Soch lo na 😌",
+  "Itni jaldi mana mat karo 💕",
+  "Main wait kar sakta hoon 🙂",
+  "Ek baar dil se pooch lo ❤️",
+  "Theek hai… jo bhi tumhara decision ho 🕊️"
+];
+
+let noCount = 0;
+
+// NO button runaway + text change
+function handleNo() {
   const x = Math.random() * (window.innerWidth - 120);
   const y = Math.random() * (window.innerHeight - 120);
+
   noBtn.style.position = "absolute";
   noBtn.style.left = x + "px";
   noBtn.style.top = y + "px";
-}
-noBtn.addEventListener("mouseover", moveNo);
-noBtn.addEventListener("touchstart", moveNo);
 
-// Time based message
-setTimeout(() => {
-  if (delayedText) {
-    delayedText.innerText = "I was scared to ask… but here I am 😌";
+  // Show different text on each click (max 5)
+  if (noCount < noTexts.length) {
+    message.innerText = noTexts[noCount];
+    noCount++;
+  } else {
+    // After 5 clicks, last respectful message stays
+    message.innerText = "I respect your choice 🙂";
   }
-}, 5000);
+}
 
-// Flying hearts
-setInterval(() => {
-  const heart = document.createElement("div");
-  heart.className = "heart";
-  heart.innerText = "❤️";
-  heart.style.left = Math.random() * 100 + "vw";
-  document.body.appendChild(heart);
+noBtn.addEventListener("click", handleNo);
+noBtn.addEventListener("mouseover", handleNo);
+noBtn.addEventListener("touchstart", handleNo);
 
-  setTimeout(() => heart.remove(), 6000);
-}, 350);
-
-// YES click – FINAL SCREEN (NO OLD TEXT)
+// YES click – final emotional screen + music
 yesBtn.addEventListener("click", () => {
+  music.play();
+
   document.body.innerHTML = `
     <div style="
       height:100vh;
@@ -65,3 +72,14 @@ yesBtn.addEventListener("click", () => {
     </div>
   `;
 });
+
+// Flying hearts animation
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerText = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 6000);
+}, 350);

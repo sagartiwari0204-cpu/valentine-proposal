@@ -11,27 +11,37 @@ body {
   background: linear-gradient(135deg, #ff758c, #ff7eb3);
 }
 
+/* main container */
 .container {
   height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
   color: white;
 }
 
-h1 {
-  margin-bottom: 30px;
+/* center block */
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
 }
 
+/* heading */
+h1 {
+  font-size: 36px;
+}
+
+/* buttons */
 .buttons {
   display: flex;
-  gap: 20px;
+  gap: 25px;
 }
 
 button {
-  padding: 12px 25px;
+  padding: 12px 28px;
   font-size: 18px;
   border: none;
   border-radius: 30px;
@@ -48,6 +58,7 @@ button {
   color: white;
 }
 
+/* final screen */
 #final-screen {
   display: none;
 }

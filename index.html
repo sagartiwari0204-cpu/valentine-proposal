@@ -1,31 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>For You ❤️</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<audio autoplay loop>
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
+  <audio id="bg-music" loop>
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
 
-<div class="container">
-  <h1 id="title">
-    Will you be my Valentine, <span class="name">❤️ Palak ❤️</span> ?
-  </h1>
+  <div class="container" id="main">
+    <h1 id="message">Will you be mine? 💌</h1>
 
-  <p id="delayed-text"></p>
-
-  <div class="buttons">
-    <button id="yes">Yes 😍</button>
-    <button id="no">No 🙃</button>
+    <div class="buttons">
+      <button id="yes">YES ❤️</button>
+      <button id="no">NO 💔</button>
+    </div>
   </div>
-</div>
 
-<div id="hearts"></div>
+  <div id="final-screen"></div>
 
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

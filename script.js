@@ -3,7 +3,10 @@ const noBtn = document.getElementById("no");
 const message = document.getElementById("message");
 const music = document.getElementById("bg-music");
 
-// Exactly 5 different NO messages
+// Make sure music is ready
+music.volume = 0.5;
+
+// NO texts (5 unique)
 const noTexts = [
   "Soch lo na 😌",
   "Itni jaldi mana mat karo 💕",
@@ -11,11 +14,21 @@ const noTexts = [
   "Ek baar dil se pooch lo ❤️",
   "Theek hai… jo bhi tumhara decision ho 🕊️"
 ];
-
 let noCount = 0;
 
-// NO button runaway + text change
+// Function to start music safely
+function startMusic() {
+  if (music.paused) {
+    music.play().catch(() => {
+      console.log("User interaction needed for audio");
+    });
+  }
+}
+
+// NO button logic
 function handleNo() {
+  startMusic(); // 🔥 music starts here too
+
   const x = Math.random() * (window.innerWidth - 120);
   const y = Math.random() * (window.innerHeight - 120);
 
@@ -23,23 +36,17 @@ function handleNo() {
   noBtn.style.left = x + "px";
   noBtn.style.top = y + "px";
 
-  // Show different text on each click (max 5)
   if (noCount < noTexts.length) {
     message.innerText = noTexts[noCount];
     noCount++;
   } else {
-    // After 5 clicks, last respectful message stays
     message.innerText = "I respect your choice 🙂";
   }
 }
 
-noBtn.addEventListener("click", handleNo);
-noBtn.addEventListener("mouseover", handleNo);
-noBtn.addEventListener("touchstart", handleNo);
-
-// YES click – final emotional screen + music
+// YES click
 yesBtn.addEventListener("click", () => {
-  music.play();
+  startMusic(); // 🔥 music definitely starts
 
   document.body.innerHTML = `
     <div style="
@@ -73,7 +80,12 @@ yesBtn.addEventListener("click", () => {
   `;
 });
 
-// Flying hearts animation
+// NO events
+noBtn.addEventListener("click", handleNo);
+noBtn.addEventListener("mouseover", handleNo);
+noBtn.addEventListener("touchstart", handleNo);
+
+// Flying hearts
 setInterval(() => {
   const heart = document.createElement("div");
   heart.className = "heart";

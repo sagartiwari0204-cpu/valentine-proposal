@@ -63,14 +63,11 @@ yesBtn.addEventListener("click", () => {
     <h1>I smiled 😊</h1>
     <h1>I fell for you 💖</h1>
     <p style="margin-top:20px;">This page exists only for you ✨</p>
-    <p style="font-size:18px;">
-        Please screenshot this moment 📸
-      </p>
     <h2 style="margin-top:25px;">I love you forever ♾️</h2>
   `;
 });
 
-// hearts animation
+// hearts
 setInterval(() => {
   const heart = document.createElement("div");
   heart.className = "heart";
@@ -80,4 +77,3 @@ setInterval(() => {
 
   setTimeout(() => heart.remove(), 6000);
 }, 400);
-
